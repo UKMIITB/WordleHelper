@@ -24,3 +24,4 @@ Also from the list, try to pick the word which is common
 7. Code will again give out a list of word as suggestions. This time the list would be smaller than the one given out in Step 4  
 8. Again repeat the steps, and you should be able to figureout the exact word
 9. Just remember, from the suggested list of words given out by code always try to pick the most common word
+10. The code ends when either suggested word list length is 0 or 1 or the color combination entered is all green
