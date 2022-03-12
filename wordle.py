@@ -61,4 +61,6 @@ def getSuggestionResult(guess_word, guess_word_result, iteration, word_list=None
         word_list = filterWordListFromCharacterColorConstraint(
             guess_word[i], guess_word_result[i], word_list, i, nonGreenCharacterPositions)
 
+    word_list.sort()
+
     return word_list
