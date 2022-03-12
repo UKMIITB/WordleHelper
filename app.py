@@ -34,4 +34,5 @@ def get_suggestion_result():
             {'status': 400, 'message': f"data parsing failed. Exception is: {exception}"})
 
 
-app.run(port=8080, threaded=True)
+if __name__ == "__main__":
+    app.run()
