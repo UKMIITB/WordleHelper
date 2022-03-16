@@ -1,27 +1,49 @@
 # WordleHelper
-This script helps to solve wordle game in less than a minute, giving highly accurate suggestions
+
+This script provides api endpoints for getting highly accurate guesses for wordle game  
+If you want to run it as simple python code, checkout `version1` branch from this repo  
+Integrating a simple frontend to use these API's has been carried out by `https://github.com/ayushpuri1012`
 
 ## How to use
-1. On running the code it'll ask "Enter the number of character limit:"  
-This is the word length of the game (Eg. For NYTimes Wordle it is 5)  
 
-2. Then it'll ask "Enter the word number 1 : "  
-This is the 1st word that you are expected to guess  
-Preferably guess a word whose all characters are unique (Eg. horse)
+1. The base url for the api endpoint is `https://wordle-helper-app.herokuapp.com/`  
+   On hitting this url, it'll just return text `Welcome to Wordle Helper API`
 
-3. Then it'll ask "Enter the color for word number 1 : "  
-This you'll get when you actually enter the word guessed in actual game  
-Assuming you guessed "horse" in the game & it returned the result as "black, yellow, yellow, black, green"  
-Here "black" means wrong alphabet, "yellow" means correct alphabet but wrong position & "green" means correct alphabet and position  
-So in this case for "Enter the color for word number 1 : ", the input should be byybg  
+2. The main url for getting predictions results is `https://wordle-helper-app.herokuapp.com/suggestion`  
+   Following points needs to be considered while accessing this endpoint  
+   Request Type: POST  
+   Header -> Content-Type: application/json  
+   Body: {  
+   "guess_word": "beast",  
+   "guess_word_result": "yyggb",  
+   "iteration": 2,  
+   "word_list": ["abc", "def", "ghi"]  
+   }  
+   `guess_word`: Is the word that was actually guessed in wordle game  
+   `guess_word_result`: Is the result of the guess word from wordle game. b is for black, y for yellow & g for green  
+   `iteration`: The current iteration going on. Make sure it starts with 1  
+   `word_list`: For each request sent, server would send back list of possible result words. Pass this list as word_list for next guess  
+   For `iteration`= 1, `word_list` should be an empty list
 
-4. On entering color for word number 1, it'll give a list of words for next guess  
-Pick any word from the list. Preferably pick word whose non green positions are distinct alphabets  
-Also from the list, try to pick the word which is common
+3. Response from API: {  
+   "status": 200,  
+   "suggestion_result": [
+   "boral",
+   "coral",
+   "goral"
+   ]  
+   }
 
-5. Enter the word picked in the game as well as input for "Enter the word number 2: "  
-6. Enter the color combination obtained from the game on enter word 2 as input for "Enter the color for word number 2 :"
-7. Code will again give out a list of word as suggestions. This time the list would be smaller than the one given out in Step 4  
-8. Again repeat the steps, and you should be able to figureout the exact word
-9. Just remember, from the suggested list of words given out by code always try to pick the most common word
-10. The code ends when either suggested word list length is 0 or 1 or the color combination entered is all green
+   User should pick one word from `suggestion_result`, preferably word which is a common word & with distinct characters.  
+   For next guess, while making API call, result of `suggestion_result` should be sent as `word_list`
+
+4. If the 1st request is sent with `x` as word length then its upto frontend user to ensure all subsequent request are for same word length & that `guess_word_result` is also of same length as `x`. If this is not followed, API might return error response
+
+5. A sample web UI is added in this project in the folder frontend. To run this, you can clone this project, go to `frontend/src/App.js` in terminal and run `npm start`
+
+6. On running the code it'll have 2 input field. Enter the guess & Enter the response from wordle  
+   The 1st guess should come from user, then enter that word in `guess` field & that same word in wordle game and the output from wordle game should be added in `Enter the response from wordle` field and press `Submit`
+
+7. It'll return list of possible words for next guess. Pick any one word from this list, preferably word which is common & has distinct characters and enter the same as next guess word in UI as well in wordle game & the result of wordle in `response` field. The next set of suggestions would keep on shrinking and quickly reaching to exact word in few iterations
+
+8. Just remember, from the suggested list of words given out by code always try to pick the most common word
