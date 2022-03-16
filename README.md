@@ -1,6 +1,8 @@
 # WordleHelper
 
-This script provides api endpoints for getting highly accurate guesses for wordle game
+This script provides api endpoints for getting highly accurate guesses for wordle game  
+If you want to run it as simple python code, checkout `version1` branch from this repo  
+Integrating a simple frontend to use these API's has been carried out by `https://github.com/ayushpuri1012`
 
 ## How to use
 
@@ -45,6 +47,3 @@ This script provides api endpoints for getting highly accurate guesses for wordl
 7. It'll return list of possible words for next guess. Pick any one word from this list, preferably word which is common & has distinct characters and enter the same as next guess word in UI as well in wordle game & the result of wordle in `response` field. The next set of suggestions would keep on shrinking and quickly reaching to exact word in few iterations
 
 8. Just remember, from the suggested list of words given out by code always try to pick the most common word
-
-9. Integrating a simple frontend to use these API's has been carried out by `Ayush Puri`  
-   His github profile link: `https://github.com/ayushpuri1012`
