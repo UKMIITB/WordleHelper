@@ -4,23 +4,23 @@ This script provides api endpoints for getting highly accurate guesses for wordl
 
 ## How to use
 
-1. The base url for the api endpoint is `https://wordle-helper-app.herokuapp.com/`
+1. The base url for the api endpoint is `https://wordle-helper-app.herokuapp.com/`  
    On hitting this url, it'll just return text `Welcome to Wordle Helper API`
 
-2. The main url for getting predictions results is `https://wordle-helper-app.herokuapp.com/suggestion`
-   Following points needs to be considered while accessing this endpoint
-   Request Type: POST
-   Header -> Content-Type: application/json
-   Body: {
-   "guess_word": "beast",
-   "guess_word_result": "yyggb",
-   "iteration": 2,
-   "word_list": ["abc", "def", "ghi"]
-   }
-   `guess_word`: Is the word that was actually guessed in wordle game
-   `guess_word_result`: Is the result of the guess word from wordle game. b is for black, y for yellow & g for green
-   `iteration`: The current iteration going on. Make sure it starts with 1
-   `word_list`: For each request sent, server would send back list of possible result words. Pass this list as word_list for next guess
+2. The main url for getting predictions results is `https://wordle-helper-app.herokuapp.com/suggestion`  
+   Following points needs to be considered while accessing this endpoint  
+   Request Type: POST  
+   Header -> Content-Type: application/json  
+   Body: {  
+   "guess_word": "beast",  
+   "guess_word_result": "yyggb",  
+   "iteration": 2,  
+   "word_list": ["abc", "def", "ghi"]  
+   }  
+   `guess_word`: Is the word that was actually guessed in wordle game  
+   `guess_word_result`: Is the result of the guess word from wordle game. b is for black, y for yellow & g for green  
+   `iteration`: The current iteration going on. Make sure it starts with 1  
+   `word_list`: For each request sent, server would send back list of possible result words. Pass this list as word_list for next guess  
    For `iteration`= 1, `word_list` should be an empty list
 
 3. Response from API: {
