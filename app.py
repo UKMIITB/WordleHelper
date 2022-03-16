@@ -1,5 +1,3 @@
-from concurrent.futures import thread
-from crypt import methods
 from wordle import getSuggestionResult
 from flask import Flask, request, jsonify
 from flask_cors import CORS
